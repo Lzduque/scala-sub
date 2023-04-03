@@ -45,6 +45,10 @@ tokenize (c : cs)
       '/' -> TokDiv : tokenize cs
       '&' -> TokAnd : tokenize cs
       '|' -> TokOr : tokenize cs
+      'v' ->
+        if head cs == 'a'
+          then TokEq : tokenize (tail cs)
+          else TokAssign : tokenize cs
       '=' ->
         if head cs == '='
           then TokEq : tokenize (tail cs)
